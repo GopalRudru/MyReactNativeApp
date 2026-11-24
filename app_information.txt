@@ -1,0 +1,795 @@
+==========================================
+       AVANSE CUSTOMER MOBILE APP
+          Application Information
+==========================================
+
+INTRODUCTION
+------------
+The Avanse Customer Mobile App is a comprehensive React Native-based mobile application designed to provide Avanse 
+customers with secure and convenient access to their financial services. This mobile platform serves as a digital 
+gateway for customers to manage their loans, track disbursements, process payments, and access various banking services 
+directly from their smartphones.
+
+Built with modern technology stack including React Native and TypeScript, the app ensures cross-platform compatibility for 
+both Android and iOS devices while maintaining high performance and security standards.
+
+APP DETAILS
+-----------
+Name: Avanse Financial Services
+Platform: React Native (Cross-platform - Android & iOS)
+Technology Stack: React Native, TypeScript, Redux Toolkit
+Security Framework: FreeRASP (Runtime Application Self-Protection)
+
+KEY FEATURES
+------------
+• Secure Authentication System
+• Comprehensive Loan Management Dashboard with Real-time Updates
+• Disbursement Tracking and Status Monitoring
+• Secure Payment Processing via Avanse Web Gateway
+• Document Upload & Download with Document Management
+• Push Notifications for Critical Updates and Alerts
+• Advanced Runtime Security with FreeRASP Protection
+• SSL Pinning and Certificate Validation
+• Anti-tampering and Root/Jailbreak Detection
+• Encrypted Local Data Storage
+• User Profile Management
+• Payment Transaction History
+• Quick Help and Customer Support Integration
+
+TECHNICAL SPECIFICATIONS
+------------------------
+Frontend Framework: React Native 0.76.9
+Programming Language: TypeScript 5.0.4
+State Management: Redux Toolkit
+Navigation: React Navigation v7
+Build Tools: Metro bundler
+Security: FreeRASP Integration
+Analytics: Firebase Analytics
+Push Notifications: Firebase Cloud Messaging
+Storage: AsyncStorage
+Network: Fetch API for HTTP communications
+
+SUPPORTED PLATFORMS
+-------------------
+• Android (API Level 24+)
+• iOS (iOS 15.0+)
+
+SECURITY FEATURES
+-----------------
+• Runtime Application Self-Protection (RASP)
+• SSL Pinning for Secure Communications
+• Data Encryption at Rest and in Transit
+• Secure Token-based Authentication
+• Anti-tampering and Anti-debugging Protection
+• Root/Jailbreak Detection
+
+DEVELOPMENT ENVIRONMENT
+-----------------------
+Repository: customer-mobileapp
+Owner: Avanse
+Build System: Gradle (Android), Xcode (iOS)
+Package Manager: npm
+
+APP ARCHITECTURE DIAGRAM
+------------------------
+┌─────────────────────────────────────────────────────────────────┐
+│                    AVANSE CUSTOMER MOBILE APP                   │
+│                        ARCHITECTURE                             │
+└─────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────┐
+│                     PRESENTATION LAYER                          │
+├─────────────────────────────────────────────────────────────────┤
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐              │
+│  │   Screens   │  │ Components  │  │ Navigation  │              │
+│  │─────────────│  │─────────────│  │─────────────│              │
+│  │ • Auth      │  │ • Custom    │  │ • Stack     │              │
+│  │ • Dashboard │  │ • UI Kit    │  │ • Tab       │              │
+│  │ • Loans     │  │ • Forms     │  │ • Drawer    │              │
+│  │ • Payments  │  │ • Modals    │  │             │              │
+│  └─────────────┘  └─────────────┘  └─────────────┘              │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                     STATE MANAGEMENT                            │
+├─────────────────────────────────────────────────────────────────┤
+│  ┌─────────────────────────────────────────────────────────┐    │
+│  │                  REDUX TOOLKIT                          │    │
+│  │                                                         │    │
+│  │  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐      │    │
+│  │  │    Auth     │  │    Loans    │  │  Payments   │      │    │
+│  │  │    Slice    │  │    Slice    │  │    Slice    │      │    │
+│  │  └─────────────┘  └─────────────┘  └─────────────┘      │    │
+│  │                                                         │    │
+│  │  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐      │    │
+│  │  │  Network    │  │   Config    │  │    User     │      │    │
+│  │  │   Slice     │  │   Slice     │  │   Slice     │      │    │
+│  │  └─────────────┘  └─────────────┘  └─────────────┘      │    │
+│  └─────────────────────────────────────────────────────────┘    │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                    BUSINESS LOGIC LAYER                         │
+├─────────────────────────────────────────────────────────────────┤
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐              │
+│  │  Services   │  │   Hooks     │  │   Utils     │              │
+│  │─────────────│  │─────────────│  │─────────────│              │
+│  │ • API       │  │ • Auth      │  │ • Crypto    │              │
+│  │ • Auth      │  │ • Network   │  │ • Date      │              │
+│  │ • Storage   │  │ • State     │  │ • Validation│              │
+│  │ • Analytics │  │             │  │             │              │
+│  └─────────────┘  └─────────────┘  └─────────────┘              │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                    NETWORK & SECURITY LAYER                     │
+├─────────────────────────────────────────────────────────────────┤
+│  ┌──────────────┐  ┌──────────────┐  ┌─────────────┐            │
+│  │  Fetch API   │  │  FreeRASP    │  │ SSL Pin Cert│            │
+│  │ HTTP Client  │  │  Security    │  │ Validation  │            │
+│  │──────────────│  │──────────────│  │─────────────│            │
+│  │ • Custom     │  │ • Anti-debug │  │             │            │
+│  │   Wrapper    │  │ • Root Detect│  │             │            │
+│  │ • Retry Logic│  │ • Tamper     │  │             │            │
+│  │ • Timeout    │  │   Protection │  │             │            │
+│  └──────────────┘  └──────────────┘  └─────────────┘            │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                       DATA LAYER                                │
+├─────────────────────────────────────────────────────────────────┤
+│  ┌─────────────┐  ┌─────────────┐  ┌──────────────┐             │
+│  │AsyncStorage │  │ Encrypted   │  │  Firebase    │             │
+│  │─────────────│  │  Storage    │  │──────────────│             │
+│  │ • User Data │  │─────────────│  │ • Analytics  │             │
+│  │ • Settings  │  │ • Tokens    │  │ • Crashlytics│             │
+│  │ • Cache     │  │ • Persist   │  │ • FCM        │             │
+│  └─────────────┘  └─────────────┘  └──────────────┘             │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                    PLATFORM LAYER                               │
+├─────────────────────────────────────────────────────────────────┤
+│        ┌─────────────────┐         ┌─────────────────┐          │
+│        │     ANDROID     │         │       iOS       │          │
+│        │─────────────────│         │─────────────────│          │
+│        │ • Native Modules│         │ • Native Modules│          │
+│        │ • Java/Kotlin   │         │ • Objective-C   │          │
+│        │ • Gradle Build  │         │ • Swift         │          │
+│        │                 │         │ • Xcode Build   │          │
+│        └─────────────────┘         └─────────────────┘          │
+└─────────────────────────────────────────────────────────────────┘
+
+EXTERNAL SERVICES & APIs
+------------------------
+┌─────────────┐  ┌──────────────┐  
+│   Avanse    │  │  Firebase    │  
+│  Backend    │  │  Services    │  
+│    APIs     │  │──────────────│  
+│─────────────│  │ • FCM        │  
+│ • Auth      │  │ • Analytics  │  
+│ • Loans     │  │ • Crashlytics│  
+│ • Accounts  │  │              │  
+│             │  │              │  
+│             │  │              │  
+└─────────────┘  └──────────────┘  
+
+PAYMENT GATEWAY INTEGRATION
+---------------------------
+The mobile app integrates with payment gateways through Avanse's web-based 
+payment infrastructure, providing secure and seamless payment processing:
+
+• Primary Integration: Avanse Web Payment Portal
+  - URL: https://payment.avanse.com/
+  - Secure WebView integration within mobile app
+  - Supports multiple payment methods (UPI, Cards, Net Banking)
+
+• Payment Gateway Features:
+  - Real-time transaction processing
+  - Multi-bank support
+  - Secure payment tokenization
+  - Transaction status tracking
+  - Payment history and receipts
+
+• Security Measures:
+  - SSL/TLS encryption for all payment communications
+  - PCI DSS compliant payment processing
+  - Two-factor authentication for high-value transactions
+  - Fraud detection and prevention mechanisms
+
+ARCHITECTURAL PRINCIPLES
+------------------------
+• Separation of Concerns: Clear layer separation for maintainability
+• Unidirectional Data Flow: Redux Toolkit for predictable state management
+• Component Reusability: Modular UI components across screens
+• Security First: FreeRASP integration at architecture level
+• Performance Optimization: Lazy loading and efficient state management
+• Cross-Platform Consistency: Shared business logic with platform-specific UI
+
+PROJECT FOLDER STRUCTURE
+------------------------
+avanseCustomerApp/
+├── README.md                          # Project documentation
+├── package.json                       # Dependencies and scripts
+├── tsconfig.json                      # TypeScript configuration
+├── babel.config.js                    # Babel transpiler config
+├── metro.config.js                    # Metro bundler config
+├── jest.config.js                     # Testing framework config
+├── react-native.config.js             # React Native config
+├── app.json                           # App metadata
+├── app_information.txt                # Application information
+├── Gemfile                            # Ruby dependencies (iOS)
+├── index.js                           # App entry point
+│
+├── __tests__/                         # Test files
+│   └── App.test.tsx
+│
+├── android/                           # Android specific files
+│   ├── build.gradle                   # Android build config
+│   ├── gradle.properties              # Gradle properties
+│   ├── settings.gradle                # Module settings
+│   ├── gradlew & gradlew.bat          # Gradle wrapper
+│   ├── local.properties               # Local SDK paths
+│   ├── link-assets-manifest.json      # Asset linking
+│   └── app/
+│       ├── build.gradle               # App module build
+│       ├── proguard-rules.pro         # Code obfuscation
+│       ├── *.keystore                 # Signing keys
+│       ├── google-services*.json      # Firebase config
+│       └── src/                       # Android source code
+│
+├── ios/                               # iOS specific files
+│   ├── Podfile & Podfile.lock         # CocoaPods dependencies
+│   ├── GoogleService-Info*.plist      # Firebase config
+│   ├── link-assets-manifest.json      # Asset linking
+│   ├── avanseCustomerApp/             # iOS app source
+│   ├── avanseCustomerApp.xcodeproj/   # Xcode project
+│   ├── avanseCustomerApp.xcworkspace/ # Xcode workspace
+│   ├── avanseCustomerAppTests/        # iOS tests
+│   ├── Certificates/                  # Signing certificates
+│   └── Pods/                          # CocoaPods modules
+│
+├── app/                               # Main application code
+│   ├── assets/                        # Static resources
+│   │   ├── fonts/                     # Custom fonts
+│   │   ├── images/                    # Image assets
+│   │   └── images_backup/             # Backup images
+│   │
+│   ├── components/                    # Reusable UI components
+│   │   ├── AuthSubTitleTextComponent.js
+│   │   ├── AuthTitleTextComponent.js
+│   │   ├── CustomButton.js
+│   │   ├── CustomTextInput.js
+│   │   ├── HeaderComponent.js
+│   │   ├── ModalPopup.tsx
+│   │   ├── StepIndicator.tsx
+│   │   ├── backgroundImages.js
+│   │   └── common/                    # Common components
+│   │
+│   ├── screens/                       # Application screens
+│   │   ├── auth/                      # Authentication screens
+│   │   ├── dashboard/                 # Dashboard screens
+│   │   ├── loans/                     # Loan management
+│   │   ├── payments/                  # Payment screens
+│   │   └── profile/                   # User profile
+│   │
+│   ├── navigation/                    # Navigation configuration
+│   │   ├── AppNavigator.tsx           # Main navigator
+│   │   ├── AuthNavigator.tsx          # Auth flow navigator
+│   │   └── TabNavigator.tsx           # Tab navigation
+│   │
+│   ├── services/                      # Business logic services
+│   │   ├── api/                       # API service layer
+│   │   ├── auth/                      # Authentication services
+│   │   ├── storage/                   # Storage services
+│   │   └── analytics/                 # Analytics services
+│   │
+│   ├── hooks/                         # Custom React hooks
+│   │   ├── useAuth.ts                 # Authentication hook
+│   │   ├── useNetwork.ts              # Network status hook
+│   │   └── useStorage.ts              # Storage hook
+│   │
+│   ├── utils/                         # Utility functions
+│   │   ├── crypto.ts                  # Cryptography utilities
+│   │   ├── validation.ts              # Form validation
+│   │   ├── dateUtils.ts               # Date formatting
+│   │   └── constants.ts               # App constants
+│   │
+│   ├── config/                        # Configuration files
+│   │   ├── firebaseConfig.js          # Firebase setup
+│   │   ├── analyticLogger.ts          # Analytics config
+│   │   └── apiConfig.ts               # API configuration
+│   │
+│   ├── constant/                      # Application constants
+│   │   ├── AppConstants.js            # General constants
+│   │   ├── Colors.ts                  # Color palette
+│   │   └── Strings.ts                 # Text constants
+│   │
+│   ├── networkOps/                    # Network operations
+│   │   ├── apiClient.ts               # HTTP client setup
+│   │   ├── endpoints.ts               # API endpoints
+│   │   └── interceptors.ts            # Request/Response handling
+│   │
+│   ├── security/                      # Security implementations
+│   │   ├── freeRASP.ts                # Runtime protection
+│   │   ├── sslPinning.ts              # Certificate pinning
+│   │   └── encryption.ts              # Data encryption
+│   │
+│   └── res/                           # Resources and styles
+│       ├── styles/                    # StyleSheet definitions
+│       ├── themes/                    # App themes
+│       └── dimensions.ts              # Screen dimensions
+│
+├── config/                            # Project configuration
+├── docs/                              # Documentation files
+│   ├── AppStateMonitor.md
+│   ├── FreeRASP_Configuration_Guide.md
+│   ├── FreeRASP_Integration.md
+│   └── iOS_FreeRASP_Timing_Fix.md
+│
+├── scripts/                           # Build and utility scripts
+└── types/                             # TypeScript type definitions
+    └── react-ipgeolocation.d.ts
+
+DEVELOPMENT SETUP INSTRUCTIONS
+------------------------------
+Complete setup guide for fresh macOS machine to develop the Avanse Financial Services mobile app.
+
+PREREQUISITES
+-------------
+• macOS 15.0 (Sequoia) or later
+• Admin privileges on the machine
+• Stable internet connection
+• Apple ID (for Xcode and iOS development)
+
+1. REACT NATIVE ENVIRONMENT SETUP
+----------------------------------
+
+Step 1: Install Homebrew
+-------------------------
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+Step 2: Install Node.js and npm
+--------------------------------
+# Install Node.js (LTS version)
+brew install node
+
+# Verify installation
+node --version  # Should show v18.x.x or later
+npm --version   # Should show v9.x.x or later
+
+Step 3: Install Watchman
+-------------------------
+# Install Facebook's Watchman for file watching
+brew install watchman
+
+Step 4: Install React Native CLI
+---------------------------------
+# Install React Native CLI globally
+npm install -g react-native-cli
+
+# Install React Native CLI (new architecture)
+npm install -g @react-native-community/cli
+
+Step 5: Install CocoaPods (for iOS)
+------------------------------------
+# Install CocoaPods for iOS dependency management
+sudo gem install cocoapods
+
+# Verify installation
+pod --version
+
+2. ANDROID STUDIO SETUP
+------------------------
+
+Step 1: Download and Install Android Studio
+--------------------------------------------
+1. Visit: https://developer.android.com/studio
+2. Download Android Studio for macOS
+3. Install the .dmg file
+4. Launch Android Studio and complete setup wizard
+
+Step 2: Install Android SDK
+----------------------------
+1. Open Android Studio
+2. Go to Preferences > Appearance & Behavior > System Settings > Android SDK
+3. Install the following SDK platforms:
+   • Android 14 (API Level 34)
+   • Android 13 (API Level 33)
+   • Android 12 (API Level 31)
+   • Android 11 (API Level 30)
+   • Android 10 (API Level 29)
+
+Step 3: Install Android SDK Build-Tools
+----------------------------------------
+In SDK Manager, go to SDK Tools tab and install:
+• Android SDK Build-Tools (latest version)
+• Android SDK Command-line Tools
+• Android SDK Platform-Tools
+• Android Emulator
+• Intel x86 Emulator Accelerator (HAXM installer)
+
+Step 4: Configure Environment Variables
+---------------------------------------
+Add to your ~/.zshrc or ~/.bash_profile:
+# Android SDK
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
+
+# Java (if needed)
+export JAVA_HOME=/Applications/Android\ Studio.app/Contents/jre/Contents/Home
+
+Step 5: Create Android Virtual Device (AVD)
+--------------------------------------------
+1. Open Android Studio
+2. Go to Tools > AVD Manager
+3. Click "Create Virtual Device"
+4. Select device (e.g., Pixel 4)
+5. Download and select system image (API 30 or higher)
+6. Configure AVD settings and finish
+
+Step 6: Verify Android Setup
+-----------------------------
+# Reload shell configuration
+source ~/.zshrc
+
+# Check Android SDK
+adb version
+
+# List available emulators
+emulator -list-avds
+
+3. XCODE SETUP
+--------------
+
+Step 1: Install Xcode
+----------------------
+1. Open Mac App Store
+2. Search for "Xcode"
+3. Install Xcode 16 (latest version)
+4. Launch Xcode and accept license agreements
+
+Step 2: Install Xcode Command Line Tools
+-----------------------------------------
+# Install command line tools
+xcode-select --install
+
+# Verify installation
+xcode-select -p
+
+Step 3: Configure Xcode
+------------------------
+1. Open Xcode
+2. Go to Preferences > Accounts
+3. Add your Apple ID
+4. Download required certificates and provisioning profiles
+
+Step 4: Install iOS Simulator
+------------------------------
+1. Open Xcode
+2. Go to Preferences > Components
+3. Download desired iOS Simulator versions:
+   • iOS 17.x (latest)
+   • iOS 16.x
+   • iOS 15.x
+
+Step 5: Setup iOS Simulator
+----------------------------
+1. Open Simulator app
+2. Go to Device > iOS version > iPhone model
+3. Test simulator functionality
+
+ADDITIONAL TOOLS SETUP
+----------------------
+
+Install Git
+-----------
+# Install Git
+brew install git
+
+# Configure Git
+git config --global user.name "Your Name"
+git config --global user.email "your.email@*****.com"
+
+Install VS Code (Recommended)
+------------------------------
+# Install Visual Studio Code
+brew install --cask visual-studio-code
+
+# Install useful extensions:
+# - React Native Tools
+# - ES7+ React/Redux/React-Native snippets
+# - Prettier - Code formatter
+# - ESLint
+
+Install Additional Development Tools
+------------------------------------
+# Install useful development tools
+brew install yarn           # Alternative package manager
+brew install flipper        # React Native debugging tool
+brew install --cask reactotron  # State management debugging
+
+PROJECT SETUP
+--------------
+
+Clone and Setup Project
+------------------------
+# Clone the repository
+git clone https://github.com/Avanse/customer-mobileapp.git
+cd customer-mobileapp
+
+# Switch to development branch
+git checkout development
+
+# Install dependencies
+npm install
+
+# Install iOS dependencies
+cd ios && pod install && cd ..
+
+
+Running the Application
+-----------------------
+# Start Metro bundler
+npm start
+
+# Run on iOS (in separate terminal)
+npm run ios
+
+# Run on Android (in separate terminal)
+npm run android
+
+# Run on specific iOS simulator
+npx react-native run-ios --simulator="iPhone 15"
+
+# Run on specific Android emulator
+npx react-native run-android
+
+TROUBLESHOOTING
+---------------
+
+Common Issues and Solutions:
+• Metro bundler cache issues: `npm start -- --reset-cache`
+• iOS build issues: `cd ios && pod install && cd ..`
+• Android build issues: `cd android && ./gradlew clean && cd ..`
+• Permission issues: Check Android SDK permissions
+• Simulator not starting: Restart Android Studio/Xcode
+
+Useful Commands:
+# Clear all caches
+npm start -- --reset-cache
+cd ios && pod deintegrate && pod install && cd ..
+cd android && ./gradlew clean && cd ..
+
+# Check React Native environment
+npx react-native doctor
+
+# View connected devices
+adb devices              # Android devices
+xcrun simctl list       # iOS simulators
+
+RELEASE BUILD CREATION
+----------------------
+
+1. ANDROID RELEASE BUILD FOR GOOGLE PLAY STORE
+-----------------------------------------------
+
+Build Using Android Studio
+----------------------------------------------
+1. Open Android Studio
+2. Open the project (select android folder)
+3. Wait for Gradle sync to complete
+4. Go to Build menu > Generate Signed Bundle / APK
+5. Select "Android App Bundle" (recommended) or "APK"
+6. Click "Next"
+7. Key store path: Browse and select "app/avanseRelease.keystore"
+8. Enter Key store password
+9. Key alias: Select your key alias from dropdown
+10. Enter Key password
+11. Click "Next"
+12. Select build variant: "release"
+13. Signature versions: Check both V1 and V2
+14. Click "Finish"
+15. Wait for build to complete
+16. Click "locate" to find generated files
+
+Android Studio Build Output Locations:
+• AAB: android/app/release/app-release.aab
+• APK: android/app/release/app-release.apk
+
+
+Build Using Command
+----------------------------------------------
+Step 1: Verify Signing Key
+--------------------------
+# Signing key is already available at:
+# android/app/avanseRelease.keystore
+
+# Verify keystore exists
+ls -la android/app/avanseRelease.keystore
+
+Step 2: Build Release APK/AAB
+------------------------------
+# Clean previous builds
+cd android && ./gradlew clean && cd ..
+
+# Build release APK
+cd android && ./gradlew assembleRelease && cd ..
+
+# Build release AAB (recommended for Play Store)
+cd android && ./gradlew bundleRelease && cd ..
+
+# Generated files location:
+# APK: android/app/build/outputs/apk/release/app-release.apk
+# AAB: android/app/build/outputs/bundle/release/app-release.aab
+
+Step 3: Verify Release Build
+----------------------------
+# Install release APK on device for testing
+adb install android/app/build/outputs/apk/release/app-release.apk
+
+# Check APK alignment
+zipalign -v -c 4 android/app/build/outputs/apk/release/app-release.apk
+
+
+Step 4: Upload to Google Play Console
+--------------------------------------
+1. Login to Google Play Console
+2. Navigate to your app
+3. Go to Production > Create new release
+4. Upload the AAB file (app-release.aab)
+5. Fill in release notes and version information
+6. Review and publish
+
+2. IOS RELEASE BUILD FOR APP STORE
+----------------------------------
+
+Step 1: Configure Xcode Project
+-------------------------------
+1. Open `ios/avanseCustomerApp.xcworkspace` in Xcode
+2. Select the project root in navigator
+3. Go to Signing & Capabilities tab
+4. Set Team to your Apple Developer account
+5. Ensure Bundle Identifier matches App Store Connect
+
+Step 2: Configure Release Settings
+----------------------------------
+1. Select "avanseCustomerApp" scheme
+2. Edit Scheme > Run > Build Configuration: Release
+3. Product > Scheme > Edit Scheme
+4. Set Build Configuration to "Release" for Archive
+
+Step 3: Archive the App
+-----------------------
+1. Select "Any iOS Device" or connected device
+2. Product > Archive
+3. Wait for archive process to complete
+4. Xcode Organizer will open automatically
+
+Step 4: Distribute to App Store
+-------------------------------
+1. In Xcode Organizer, select the archive
+2. Click "Distribute App"
+3. Select "App Store Connect"
+4. Choose distribution options:
+   - Upload your app's symbols: Yes
+   - Manage Version and Build Number: Yes
+5. Review and upload
+
+Step 5: Submit for Review in App Store Connect
+----------------------------------------------
+1. Login to App Store Connect
+2. Navigate to your app
+3. Go to TestFlight tab to verify upload
+4. Move to App Store tab
+5. Create new version if needed
+6. Fill in:
+   - App Information
+   - Pricing and Availability
+   - App Privacy
+   - App Review Information
+7. Submit for review
+
+RELEASE CHECKLIST
+-----------------
+
+Android Release Checklist:
+• ✓ Update version code and version name in build.gradle
+• ✓ Test release build on multiple devices
+• ✓ Verify app signing configuration
+• ✓ Enable ProGuard/R8 for code obfuscation
+• ✓ Test app bundle/APK installation
+• ✓ Verify Google Play Store requirements
+• ✓ Update release notes
+
+iOS Release Checklist:
+• ✓ Update CFBundleVersion and CFBundleShortVersionString
+• ✓ Test release build on physical devices
+• ✓ Verify provisioning profiles and certificates
+• ✓ Check App Store Connect configuration
+• ✓ Test TestFlight distribution
+• ✓ Prepare App Store screenshots and metadata
+• ✓ Submit for App Store review
+
+RELEASE CHECKLIST FOR CODE LEVEL CHANGES
+-----------------------------------------
+
+Pre-Release Code Configuration:
+• ✓ Update WelcomeScreen.tsx environment configuration:
+  - Set env: "prod"
+
+• ✓ Update apiClient.js base URL for production:
+  - Set BASE_URL = "https://api-customerportal.avanse.com/"
+
+• ✓ Update freeRaspConfig.ts environment setting:
+  - Set ENVIRONMENT = 'production'
+
+• ✓ Update encrypt.ts secret key for production:
+  - Set secretKey = "GKs2aGcrEvD4f90Jmu0/tuzzoWUD4qKNu81oA2DuTDI="
+
+• ✓ Configure Firebase for production (Android):
+  - Replace android/app/google-services.json with android/app/google-services-prod.json
+  - Ensure production Firebase project configuration is active
+
+• ✓ Configure Firebase for production (iOS):
+  - Replace ios/GoogleService-Info.plist with ios/GoogleService-Info-prdo.plist
+  - Verify production Firebase project settings
+
+• ✓ Verify all environment-specific configurations:
+  - API endpoints point to production servers
+  - Analytics tracking IDs are production values
+  - Push notification configurations use production certificates
+  - Third-party service keys are production keys
+
+• ✓ Code quality checks before release:
+  - Remove all console.log statements
+  - Remove debug flags and development-only code
+  - Verify no hardcoded test data remains
+  - Ensure proper error handling in production
+
+IMPORTANT NOTES
+---------------
+• Always test release builds on physical devices before submission
+• Keep keystore files secure and backed up (Android)
+• Maintain proper versioning for both platforms
+• Follow platform-specific guidelines for app submission
+• Test critical app functionality in release mode
+• Verify all third-party SDK configurations work in release builds
+
+Android avanseRelease.keystore details
+--------------------------------------
+
+|-------------------------|----------------------------------|
+| Property                | Value                            |
+|-------------------------|----------------------------------|
+| Key store password      | Avanse@Financial&291#Services983 |
+|-------------------------|----------------------------------|
+| Alias                   | avanseRelease                    |
+|-------------------------|----------------------------------|
+| Password                | Avanse@Financial&291#Services983 |
+|-------------------------|----------------------------------|
+| Validity                | 30                               |
+|-------------------------|----------------------------------|
+| First and Last Name     | Avanse Financial Services        |
+|-------------------------|----------------------------------|
+| Organizational Unit     | Avanse Financial Services        |
+|-------------------------|----------------------------------|
+| Organization            | Avanse Financial Services        |
+|-------------------------|----------------------------------|
+| City or Locality        | Mumbai                           |
+|-------------------------|----------------------------------|
+| State or Province       | Maharashtra                      |
+|-------------------------|----------------------------------|
+| Country Code            | 91                               |
+|-------------------------|----------------------------------|
+
+
+
+CONTACT & SUPPORT

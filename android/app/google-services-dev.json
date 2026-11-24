@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "881503705415",
+    "project_id": "customer-mobile-applicat-eee69",
+    "storage_bucket": "customer-mobile-applicat-eee69.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:881503705415:android:7f750ef5ad90e1f3745462",
+        "android_client_info": {
+          "package_name": "com.customermobapp.avanse"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7nbXfJ_Y_vZ8vhF71rPdbZy0g_yY0Ewc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:881503705415:android:05a0c9722b9ae25e745462",
+        "android_client_info": {
+          "package_name": "com.customermobapp.avanse.debug"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7nbXfJ_Y_vZ8vhF71rPdbZy0g_yY0Ewc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

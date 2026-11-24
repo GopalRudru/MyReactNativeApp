@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Declare support for 16KB page sizes -->
+    <!-- This tells Google Play that your app has been tested and works correctly with 16KB page sizes -->
+    <bool name="android_app_supports_16kb_page_size">true</bool>
+</resources>

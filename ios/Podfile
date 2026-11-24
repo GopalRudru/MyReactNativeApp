@@ -1,0 +1,65 @@
+require Pod::Executable.execute_command('node', ['-p',
+  'require.resolve(
+    "react-native/scripts/react_native_pods.rb",
+    {paths: [process.argv[1]]},
+  )', __dir__]).strip
+
+# Disable the New Architecture (Fabric) on iOS.
+# With Fabric on, RNSScreenStackHeaderConfig is mounted via the legacy interop
+# layer; under RCT_NEW_ARCH_ENABLED its ViewManager compiles out -(UIView *)view
+# while still exporting the `color` prop, so RCTViewManager's base returns a bare
+# RCTView and -[RCTView setColor:] throws at launch.
+ENV['RCT_NEW_ARCH_ENABLED'] = '0'
+
+platform :ios, min_ios_version_supported
+prepare_react_native_project!
+
+use_frameworks! :linkage => :static
+
+target 'avanseCustomerApp' do
+  config = use_native_modules! 
+
+  use_react_native!(
+    :path => config[:reactNativePath],
+    :app_path => "#{Pod::Config.instance.installation_root}/.."
+  )
+
+  target 'avanseCustomerAppTests' do
+    inherit! :complete
+  end
+
+  post_install do |installer|
+    # iOS 26 SDK marks netinet6/in6.h as a private modular header; AFNetworking's
+    # redundant import of it fails to compile. netinet/in.h already provides it.
+    Dir.glob(File.join(__dir__, 'Pods/AFNetworking/**/*.{h,m}')).each do |file|
+      contents = File.read(file)
+      patched = contents.gsub(/^#import <netinet6\/in6\.h>\n/, '')
+      if patched != contents
+        File.chmod(0644, file)
+        File.write(file, patched)
+      end
+    end
+
+    react_native_post_install(
+      installer,
+      config[:reactNativePath],
+      :mac_catalyst_enabled => false
+    )
+
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+        config.build_settings['DEBUG_INFORMATION_FORMAT'] = 'dwarf-with-dsym'
+        # Keep every pod on the app's 15.1 floor; some podspecs declare 9.0-13.4,
+        # which Xcode 26 rejects with deployment-target warnings.
+        if config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'].to_f < 15.1
+          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.1'
+        end
+        # Xcode 26 (Apple clang 21) rejects fmt 11.0.2's consteval FMT_STRING
+        # checks; building fmt as C++17 skips the consteval path entirely.
+        if target.name == 'fmt'
+          config.build_settings['CLANG_CXX_LANGUAGE_STANDARD'] = 'c++17'
+        end
+      end
+    end
+  end
+end

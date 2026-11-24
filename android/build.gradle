@@ -1,0 +1,49 @@
+buildscript {
+    ext {
+//        buildToolsVersion = "35.0.0"
+//        minSdkVersion = 24
+//        compileSdkVersion = 35
+//        targetSdkVersion = 35
+//        ndkVersion = "27.1.12297006"
+//        kotlinVersion = "2.0.21"
+        buildToolsVersion = "36.0.0"
+        minSdkVersion = 24
+        compileSdkVersion = 36
+        targetSdkVersion = 36
+        ndkVersion = "27.1.12297006"
+        kotlinVersion = "2.0.21"
+    }
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.google.gms:google-services:4.4.2'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:3.0.3'
+        classpath("com.android.tools.build:gradle")
+        classpath("com.facebook.react:react-native-gradle-plugin")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
+    }
+}
+
+allprojects {
+    repositories {
+        google() // ✅ again, must be here too
+        mavenCentral()
+    }
+
+    // 16 KB page size support.
+    // react-native-pdf 6.7.7 pins io.legere:pdfiumandroid:1.0.24, whose .so files are
+    // 4 KB aligned and fail Play's 16 KB check. 1.0.32 is 16 KB aligned and pairs with
+    // the same AndroidPdfViewer 4.0.1, so forcing it here avoids a major
+    // react-native-pdf upgrade. Remove once react-native-pdf is upgraded to 7.x.
+    configurations.all {
+        resolutionStrategy.eachDependency { details ->
+            if (details.requested.group == 'io.legere' && details.requested.name == 'pdfiumandroid') {
+                details.useVersion '1.0.32'
+            }
+        }
+    }
+}
+
+apply plugin: "com.facebook.react.rootproject"
