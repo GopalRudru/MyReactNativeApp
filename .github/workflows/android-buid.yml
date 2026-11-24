@@ -5,7 +5,7 @@ name: React Native Android Build
 on:
   push:
     branches:
-      - part
+      - main
 
   workflow_dispatch:
 
