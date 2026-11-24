@@ -1,0 +1,57 @@
+#Nothing
+
+name: React Native Android Build
+
+on:
+  push:
+    branches:
+      - part
+
+  workflow_dispatch:
+
+jobs:
+  android-build:
+    name: Generate Android APK
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Get the latest source code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      # 3. Setup Java
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      # 4. Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # 5. Setup Gradle
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v6
+
+      # 6. Build Android APK
+      - name: Generate APK
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleRelease
+
+      # 7. Upload APK
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-release-apk
+          path: android/app/build/outputs/apk/release/*.apk
+          retention-days: 7
