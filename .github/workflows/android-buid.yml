@@ -52,7 +52,7 @@ jobs:
         run: |
           cd android
           chmod +x gradlew
-          ./gradlew assembleRelease
+          ./gradlew assembleDebug
 
       # 8. Upload APK as artifact
       - name: Upload APK
