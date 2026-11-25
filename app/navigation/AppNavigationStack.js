@@ -51,10 +51,10 @@ export default function AppNavigationStack() {
         <Stack.Screen name={navigationStrings.SPLASH} component={Splash} />
       )}
       {/* <Stack.Screen name={navigationStrings.SPLASH} component={Splash} /> */}
-      <Stack.Screen
+      {/* <Stack.Screen
         name={navigationStrings.WELCOME_SCREEN}
         component={WelcomeScreen}
-      />
+      /> */}
       <Stack.Screen name={navigationStrings.LOGIN} component={Login} />
       <Stack.Screen name={navigationStrings.REGISTER} component={Register} />
       <Stack.Screen name={navigationStrings.OTP} component={Otp} />
@@ -148,7 +148,7 @@ export default function AppNavigationStack() {
         name={navigationStrings.BIOMETRIC_MPIN_LOGIN}
         component={BiometricMpinLogin}
       />
-       <Stack.Screen
+      <Stack.Screen
         name={navigationStrings.MPIN_UPDATED_SUCCESS_SCREEN}
         component={MpinUpdatedSuccessScreen}
       />
@@ -164,10 +164,7 @@ export default function AppNavigationStack() {
         name={navigationStrings.NO_LOANS_SCREEN}
         component={NoLoansFound}
       />
-      <Stack.Screen
-        name={navigationStrings.AWS_FORM}
-        component={AwsForm}
-      />
+      <Stack.Screen name={navigationStrings.AWS_FORM} component={AwsForm} />
     </Stack.Navigator>
   );
 }
